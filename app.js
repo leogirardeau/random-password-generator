@@ -1,6 +1,9 @@
 const button = document.querySelector(".btn");
+const alertBox = document.querySelector(".alertBox");
+const copy = document.querySelector(".copy");
 
 button.addEventListener("click", getPassword);
+copy.addEventListener("click", copyPassword);
 
 function getPassword() {
   var chars =
@@ -14,4 +17,16 @@ function getPassword() {
   }
 
   document.getElementById("password").value = password;
+  alertBox.innerHTML = "New Password Copied: <br>" + password;
+}
+
+function copyPassword() {
+  var copyPassText = document.getElementById("password");
+  copyPassText.select();
+  copyPassText.setSelectionRange(0, 9999);
+  document.execCommand("copy");
+  alertBox.classList.toggle("active");
+  setTimeout(function () {
+    alertBox.classList.toggle("active");
+  }, 2000);
 }
